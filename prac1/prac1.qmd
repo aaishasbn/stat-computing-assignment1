@@ -1,0 +1,71 @@
+---
+title: "Practical One"
+author: "Aaisha Saban"
+format: html
+---
+
+## Question 1: Find rows with missing values in `airquality`
+
+```{r}
+df <-  airquality # Load the built-in airquality dataset
+
+naRows <- c()
+for (r in 1:nrow(df)){
+  for (col in 1:ncol(df)){
+    if (is.na(df[r, col])){
+      naRows <- c(naRows, r)
+      break
+    }
+  }
+}
+print(naRows)
+
+
+
+```
+
+## Question 2: Summary statistics for Temperature and Ozone
+
+```{r}
+# Compute min, max, mean, and standard deviation for Temperature
+temp_stats <- c(
+  min = min(df$Temp, na.rm = TRUE),
+  max = max(df$Temp, na.rm = TRUE),
+  mean = mean(df$Temp, na.rm = TRUE),
+  sd = sd(df$Temp, na.rm = TRUE)
+)
+print(temp_stats)
+
+# Compute min, max, mean, and standard deviation for Ozone
+ozone_stats <- c(
+  min = min(df$Ozone, na.rm = TRUE),
+  max = max(df$Ozone, na.rm = TRUE),
+  mean = mean(df$Ozone, na.rm = TRUE),
+  sd = sd(df$Ozone, na.rm = TRUE)
+)
+print(ozone_stats)
+
+
+```
+
+## Question 3: Find the beta estimates
+
+```{r}
+df2 <- cars # Load the built-in cars dataset
+Y <- df2$dist # Response variable: stopping distance
+X <- cbind(Intercept = 1, Speed = df2$speed) ## Design matrix with intercept and speed
+#Compute least-squares estimates using the normal equation
+b <- solve(t(X) %*% X) %*% t(X) %*% Y 
+rownames(b) <- c("Intercept", "Slope")
+print(b)
+
+```
+
+## Question 4: Check beta estimates
+
+```{r}
+# Fit a linear regression model using R's lm() function
+model <- lm(dist ~ speed, data = cars)
+summary(model)
+model$coefficients
+```

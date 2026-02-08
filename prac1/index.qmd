@@ -1,0 +1,13 @@
+---
+title: "Statistical Computing Practicals"
+---
+
+## Overview
+
+This website contains the required practicals for the Statistical Computing course.
+
+### Included Practicals
+
+-   Prac 1
+-   Day 3 Practical (Questions 4 and 5)
+-   Prac 4
